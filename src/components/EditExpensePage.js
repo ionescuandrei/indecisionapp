@@ -10,6 +10,15 @@ const EditExpensePage=(props)=>{
       expense={props.expenses}
       onSubmit={(expense) => {
         props.dispatch(editExpense(props.expenses.id, expense));
+        console.log(props.expenses.id)
+        fetch('http://localhost:3001/api/expenses/'.concat(props.expenses.id),
+        {
+            method: 'put',
+            headers: {'Content-Type':'application/json'},
+            body:JSON.stringify({
+             ...expense
+            })
+        } )  
         props.history.push('/');
       }}
        />

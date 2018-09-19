@@ -9,7 +9,15 @@ const AddExpensePage=(props)=>(
             <h1>Add expense</h1>
             <ExpenseForm
             onSubmit={(expense)=>{
-                props.dispatch(addExpense(expense));
+                props.dispatch(addExpense(expense));  
+                fetch('http://localhost:3001/api/expenses',
+                {
+                    method: 'post',
+                    headers: {'Content-Type':'application/json'},
+                    body:JSON.stringify({
+                     ...expense
+                    })
+                } )       
                 props.history.push("/");
             }}
             />

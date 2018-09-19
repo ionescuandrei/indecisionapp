@@ -59,7 +59,8 @@ export default class ExpenseForm extends React.Component{
                 amount:parseFloat(this.state.amount),
                 createdAt:this.state.createdAt.valueOf(),
                 note:this.state.note
-            });
+            });        
+            
 
         }
     }

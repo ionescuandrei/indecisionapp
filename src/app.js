@@ -17,10 +17,13 @@ store.subscribe(()=>{
     const visibleExpenses=getVisibleExpenses(state.expenses, state.filters)
   
 })
+fetch('http://localhost:3001/api/expenses/')
+.then((response)=>(response.json()))
+.then((data)=>(data.forEach(element => {
+  store.dispatch(addExpense(element))   
+console.log(element);  
+})));
 
-store.dispatch(addExpense({description:'Water Bill', notes:'Mounthly bill',amount:200, createdAt:1000}));
-store.dispatch(addExpense({description:'Gas Bill', notes:'Anual bill',amount:100, createdAt:2000}));
-store.dispatch(addExpense({description:'Rent', notes:'Mounthly bill',amount:5200, createdAt:3000}));
 
 const jsx = ( 
     <Provider store={store}>
